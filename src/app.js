@@ -1,14 +1,17 @@
 import React from "react"
 import ReactDOM from 'react-dom'
+import {BrowserRouter, Link, Route, Router} from 'react-router-dom'
+import {createBrowserHistory} from 'history';
+import App from './containers/App'
+import './index.less'
 
-class App extends React.Component{
-    render() {
-        return <div>
-            111
-        </div>
-    }
-}
+const history = createBrowserHistory();
+const supportsHistory = 'pushState' in window.history;
 
-ReactDOM.render(<div>
+ReactDOM.render(<BrowserRouter forceRefresh={!supportsHistory}>
     <App/>
-</div>, document.getElementById('root'));
+</BrowserRouter>, document.getElementById('root'));
+
+if (module.hot) {
+    module.hot.accept();
+}
